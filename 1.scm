@@ -283,3 +283,28 @@
     (+ (f (- n 1))
        (* 2 (f (- n 2)))
        (* 3 (f (- n 3))))))
+
+                                        ; Exercise 1.12
+
+(define (pt-val row col)
+  (if (= row 0)
+      (if (= col 0) 1 0)
+      (+ (pt-val (- row 1) (- col 1))
+         (pt-val (- row 1) col))))
+
+(define (pt rows)
+  (define (row r)
+    (define (col c)
+      (if (<= c r)
+          (begin
+            (write (pt-val r c))
+            (write-string " ")
+            (col (inc c)))))
+    (if (<= r rows)
+        (begin
+          (col 0)
+          (write-string "\n")
+          (row (inc r)))))
+  (row 0))
+
+(pt 5)
