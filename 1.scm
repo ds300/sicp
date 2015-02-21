@@ -95,14 +95,14 @@
 (square 1.0000000000082464e-4) ;Value: 1.0000000000164927e-8
 
 
-                                        ; Excerise 1.8
+                                        ; Exercise 1.8
 
 (define (cbrt-improve guess x)
   (/ (+ (/ x (square guess)) (* 2 guess)) 3))
 
 (define (cbrt-iter guess x)
   (let ((new-guess (cbrt-improve guess x)))
-    (if (< (/ (abs (- new-guess guess)) guess) 0.001)
+    (if (< (/ (abs (- new-guess guess)) guess) 0.001)￼
         new-guess
         (cbrt-iter new-guess x))))
 
@@ -110,3 +110,23 @@
   (cbrt-iter 1.0 x))
 
 (cbrt 5) ;Value: 1.709975950782189
+
+                                        ; Exercise 1.9
+;; these don't seem to be defined
+(define (inc x) (+ x 1))
+(define (dec x) (- x 1))
+
+(+ 4 5)
+(inc (+ 3 5))
+(inc (inc (+ 2 5)))
+(inc (inc (inc (+ 1 5))))
+(inc (inc (inc (inc (+ 0 5)))))
+(inc (inc (inc (inc 5))))
+9
+
+(+ 4 5)
+(+ 3 6)
+(+ 2 7)
+(+ 1 8)
+(+ 0 9)
+9
