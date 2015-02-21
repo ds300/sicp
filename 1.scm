@@ -89,7 +89,24 @@
 (square 6.507099379970976e49) ;Value: 4.2342342340818654e99
 
 ;; and small values get much more accurate too.
-(sqrt 1e-8) ;Value: .03125010656242753
-(square .03125010656242753) ;Value: 9.76569160163076e-4
-(sqrt2 1e-8) ;Value: 1.0000000000082464e-4
+(sqrt 1e-8)                    ;Value: .03125010656242753
+(square .03125010656242753)    ;Value: 9.76569160163076e-4
+(sqrt2 1e-8)                   ;Value: 1.0000000000082464e-4
 (square 1.0000000000082464e-4) ;Value: 1.0000000000164927e-8
+
+
+                                        ; Excerise 1.8
+
+(define (cbrt-improve guess x)
+  (/ (+ (/ x (square guess)) (* 2 guess)) 3))
+
+(define (cbrt-iter guess x)
+  (let ((new-guess (cbrt-improve guess x)))
+    (if (< (/ (abs (- new-guess guess)) guess) 0.001)
+        new-guess
+        (cbrt-iter new-guess x))))
+
+(define (cbrt x)
+  (cbrt-iter 1.0 x))
+
+(cbrt 5) ;Value: 1.709975950782189
